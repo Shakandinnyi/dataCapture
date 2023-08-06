@@ -1,0 +1,23 @@
+
+
+.button-flex {
+	display: row;
+	justify-content: center;
+	align-items: center;
+	gap: 50px;
+}
+
+.audio-controls,
+.video-controls {
+	margin-bottom: 1px;
+}
+
+.audio-player,
+.video-player,
+.recorded-player {
+	display: flex;
+	
+	align-items: center;
+}
+
+
