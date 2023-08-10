@@ -3,7 +3,7 @@ import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 const Question = ({ title, info }) => {
   const [showInfo, setShowInfo] = useState(false);
   return (
-    <article className='question'>
+    <article className='question Home'>
       <header>
         <h4>{title}</h4>
         <button className='btn-Questions' onClick={() => setShowInfo(!showInfo)}>

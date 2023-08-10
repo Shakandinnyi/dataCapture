@@ -5,7 +5,7 @@ import {Link } from 'react-router-dom';
 
 const Nav = ({search,setSearch}) => {
   return (
-    <nav className="Nav">
+    <nav className="Nav" style={{fontFamily:'Work sans'}}>
           <form className="searchForm" onSubmit={(e)=>e.preventDefault()}>
                 <label htmlFor="search">Search Issues</label>
                 <input id="search"
@@ -23,6 +23,8 @@ const Nav = ({search,setSearch}) => {
                 <li><Link to="/report">Report </Link></li>
                 <li><Link to="/about">About</Link></li>
                 <li><Link to="/faq">FAQ</Link></li>
+               
+                <li><Link to="/tabs">ReportCard</Link></li>
                 
                 
                 

@@ -67,7 +67,7 @@ const AudioRecorder = () => {
 
 	return (
 		<div>
-			<h3>Enter Audio Directions</h3>
+			<h3>Optional- Enter Voice Directions</h3>
 			<main>
 				<div className="audio-controls">
 					{!permission ? (

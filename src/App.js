@@ -10,14 +10,20 @@ import {Routes, Route} from 'react-router-dom'
 import { useState} from 'react';
 import {useEffect} from 'react';
 import Faq from './Faq';
+import data from './data';
+import TabsData from './TabsData';
 
-
+import useWindowSize from './hooks/useWindowSize';
 import Nav from './Nav';
+import Video from './Video';
+import WhiteLabel from './WhiteLabel';
+import Tabs from './Tabs';
+
 
 
 function App() {
  
-    const [services,setServices] =useState([])
+    const [services,setServices] =useState(data)
     const [search,setSearch] =useState('');
     const [searchResults,setSearchResults] = useState([]);
   const [servicesName, setServicesName] = useState('');
@@ -33,16 +39,24 @@ function App() {
   const [coordinates,setCoordinates] =useState('');
   const [municipality,setMunicipality] =useState('');
   const[status,setStatus]=useState('');
+  const[statusInfo,setStatusInfo]=useState('');
+  const[statusInfo1,setStatusInfo1]=useState('');
+  const[statusInfo2,setStatusInfo2]=useState('');
   const [ward,setWard]=useState('');
+  const[urgent,setUrgent] =useState('');
 
+ const [audio,setAudio] =useState('');
   const navigate=useNavigate();
+  const { width } = useWindowSize();
 
-    
+ 
+   
+
    const handleSubmit = async (e) => {
     e.preventDefault();
       const id = services.length ? services[services.length - 1].id + 1 : 1;
       const datetime = format(new Date(), 'MMMM dd, yyyy pp');
-      const newService = { id, name: servicesName, datetime,email,ward, info: servicesInfo,status,image,municipality,type,coordinates, imageB, number,location};
+      const newService = { id, name: servicesName, datetime,email,ward, urgent,info: servicesInfo,status,statusInfo,statusInfo1,statusInfo2,image,municipality,type,coordinates, imageB,audio, number,location};
     try {
       const response = await api.post('/services', newService);
       const allServices = [...services, response.data];
@@ -52,18 +66,25 @@ function App() {
       setLocation('');
       setImage('');
       setImageB('');
+      setAudio('');
       setMunicipality('')
       setType('');
       setEmail('');
       setNumber('');
       setCoordinates('');
       setWard('');
+      setUrgent('');
       navigate('/');
+      setStatusInfo('');
+      setStatusInfo1('');
+      setStatusInfo2('');
 
     } catch(err) {  console.log(`Error: ${err.message}`);}
    
 
   }
+
+
 
   useEffect(() => {
   const fetchServices = async () => {
@@ -107,11 +128,12 @@ useEffect(() => {
 
   return (
     <div className="App">
-    <Header title="DataCapture" />
+    <Header title="DataCapture"  width={width}/>
     <Nav search={search} setSearch={setSearch} />
+    
    
    <Routes>
-   <Route path="/" element={<Home services={searchResults} setServices={setServices} />} />
+   <Route path="/" element={<Home services={services} setServices={setServices} />} />
    <Route  path="/report" element={<NewPost
             services={services}
             setServices={setServices}
@@ -135,6 +157,9 @@ useEffect(() => {
            municipality={municipality}
            setMunicipality={setMunicipality}
            status={status}
+           statusInfo={statusInfo}
+           statusInfo1={statusInfo1}
+           statusInfo2={statusInfo2}
            setStatus={setStatus}
            location={location}
            setLocation={setLocation}
@@ -142,11 +167,21 @@ useEffect(() => {
            handleUploadB={handleUploadB}
            ward={ward}
            setWard={setWard}
-            
+           urgent={urgent}
+           setUrgent={setUrgent}
+            audio={audio}
+            setAudio={setAudio}
   
             />} />
+            
         <Route path='/about' element={<About />} />
         <Route path='/faq' element={<Faq />} />
+        <Route path='/whitelabel' element={<WhiteLabel />} />
+        <Route path='/tabs' element={<Tabs />} />
+        
+        
+        
+
    </Routes>
 
 

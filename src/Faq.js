@@ -8,14 +8,17 @@ const TradeSafe = () => {
   return (
     <main className='About'>
  
-        
+ <div className="title">
+        <h2>Frequently Asked Questions</h2>
+        <div className="underline"></div>
+      </div>
        
 
 
         
 
       <div className='container'>
-      <h2>Frequently Asked Questions</h2>
+     
      
         <section className='info'>
           {questions.map((question) => {

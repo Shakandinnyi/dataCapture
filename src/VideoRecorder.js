@@ -115,7 +115,7 @@ const VideoRecorder = () => {
 				</div>
 			</main>
 
-			<div className="video-player">
+			<div className="video-player" style={{margin:'0'}}>
 				{!recordedVideo ? (
 					<video ref={liveVideoFeed} autoPlay className="live-player"></video>
 				) : null}
